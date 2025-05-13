@@ -15,15 +15,21 @@ let copybtn = document.querySelector("#copy");
 copybtn.addEventListener("click", function () {
   let texttocopy = quote.innerText;
 
-  navigator.clipboard.writeText(texttocopy)
-  .then(() => {
+  navigator.clipboard
+    .writeText(texttocopy)
+    .then(() => {
       copybtn.disabled = true;
-      copybtn.innerText = `Copied!`;
+      copybtn.innerText = `Copied! ✅`;
+      copybtn.style.width = `20vh`;
+      copybtn.style.borderRadius = `10px`;
       setTimeout(() => {
         copybtn.innerHTML = `<i class="ri-clipboard-line"></i>`;
-              copybtn.disabled = false;
+        copybtn.disabled = false;
+        copybtn.style.width = `5vh`;
+        copybtn.style.borderRadius = `50%`;
       }, 1000);
-    }).catch((err) => {
+    })
+    .catch((err) => {
       console.error("Copy failed:", err);
     });
 });
